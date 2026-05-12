@@ -1,0 +1,26 @@
+<!-- Cover Page -->
+<div class="cover-page">
+  <div class="cover-logo">API</div>
+  <div class="cover-company"><%= company %></div>
+  <div class="cover-divider"></div>
+  <h1 class="cover-title"><%= project %></h1>
+  <p class="cover-subtitle">API Documentation</p>
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Version</div>
+      <div class="cover-meta-value"><%= specs[0]?.version || '1.0.0' %></div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Base URL</div>
+      <div class="cover-meta-value"><%= baseUrl %></div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Auth</div>
+      <div class="cover-meta-value"><%= authType %></div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Date</div>
+      <div class="cover-meta-value"><%= date %></div>
+    </div>
+  </div>
+</div>

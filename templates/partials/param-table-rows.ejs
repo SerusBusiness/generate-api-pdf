@@ -1,0 +1,13 @@
+<!-- Reusable parameter table with nested properties -->
+<% if (properties && properties.length > 0) { %>
+<table class="param-table">
+  <thead>
+    <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <% for (const prop of properties) { %>
+      <%- include('param-row', { prop }) %>
+    <% } %>
+  </tbody>
+</table>
+<% } %>

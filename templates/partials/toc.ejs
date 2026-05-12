@@ -1,0 +1,33 @@
+<!-- Table of Contents -->
+<div class="toc-page">
+  <h2>Table of Contents</h2>
+
+  <ul class="toc-list">
+    <% for (const spec of specs) { %>
+      <% for (const tag of spec.tags) { %>
+        <li class="toc-item">
+          <a href="#<%= tag.anchorId %>"><%= tag.name %></a>
+          <span class="toc-count"><%= tag.endpoints.length %> endpoints</span>
+        </li>
+        <ul class="toc-sub">
+          <% for (const ep of tag.endpoints) { %>
+            <li class="toc-item">
+              <a href="#<%= ep.anchorId %>">
+                <span class="method-badge method-<%= ep.method %>" style="font-size:7pt;padding:1px 5px;"><%= ep.method %></span>
+                <%= ep.path %>
+                <% if (ep.summary) { %>— <%= ep.summary %><% } %>
+              </a>
+            </li>
+          <% } %>
+        </ul>
+      <% } %>
+    <% } %>
+
+    <% if (specs.some(s => s.schemas.length > 0)) { %>
+      <li class="toc-item" style="margin-top: 12px;">
+        <a href="#schemas-section">Component Schemas</a>
+        <span class="toc-count"><%= specs.reduce((sum, s) => sum + s.schemas.length, 0) %> schemas</span>
+      </li>
+    <% } %>
+  </ul>
+</div>

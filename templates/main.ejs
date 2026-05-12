@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title><%= specs[0]?.title || project %> — API Documentation</title>
+<style>
+  <%- include('partials/styles') %>
+</style>
+</head>
+<body>
+
+<% if (showCover) { %>
+  <%- include('partials/cover') %>
+<% } %>
+
+<% if (showToc) { %>
+  <%- include('partials/toc') %>
+<% } %>
+
+<% for (const spec of specs) { %>
+  <%- include('partials/endpoints', { spec }) %>
+<% } %>
+
+<% if (specs.some(s => s.schemas.length > 0)) { %>
+  <%- include('partials/schemas') %>
+<% } %>
+
+</body>
+</html>
