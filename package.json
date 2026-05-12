@@ -13,15 +13,15 @@
     "ejs",
     "puppeteer"
   ],
-  "author": "Kittisak M. <kittisak.m@lightuptotal.co.th>",
+  "author": "SerusBusiness <serus.business@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lightuptotal/generate-api-pdf.git"
+    "url": "https://github.com/SerusBusiness/generate-api-pdf.git"
   },
-  "homepage": "https://github.com/lightuptotal/generate-api-pdf#readme",
+  "homepage": "https://github.com/SerusBusiness/generate-api-pdf#readme",
   "bugs": {
-    "url": "https://github.com/lightuptotal/generate-api-pdf/issues"
+    "url": "https://github.com/SerusBusiness/generate-api-pdf/issues"
   },
   "type": "module",
   "main": "src/parser.mjs",
