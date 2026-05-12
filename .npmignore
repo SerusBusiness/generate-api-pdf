@@ -1,0 +1,12 @@
+# Source maps & dev files
+*.html
+.agents/
+.codex/
+.vscode/
+.idea/
+
+# Test output
+test-output/
+
+# Docs (repo only, not in npm package)
+docs/

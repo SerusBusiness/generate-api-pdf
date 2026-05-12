@@ -1,29 +1,29 @@
 <!-- Endpoint Section for a single spec -->
 <% for (const tag of spec.tags) { %>
-<div class="tag-section" id="<%= tag.anchorId %>">
-  <h2 class="tag-header"><%= tag.name %></h2>
+<div class="tag-section" id="<%- esc(tag.anchorId) %>">
+  <h2 class="tag-header"><%- esc(tag.name) %></h2>
   <% if (tag.description) { %>
-    <p class="tag-description"><%= tag.description %></p>
+    <p class="tag-description"><%- esc(tag.description) %></p>
   <% } %>
 
   <% for (const ep of tag.endpoints) { %>
-  <div class="endpoint" id="<%= ep.anchorId %>">
+  <div class="endpoint" id="<%- esc(ep.anchorId) %>">
     <!-- Header: Method + Path + Summary -->
     <div class="endpoint-header">
-      <span class="method-badge method-<%= ep.method %>"><%= ep.method %></span>
-      <span class="endpoint-path"><%= ep.path %></span>
+      <span class="method-badge method-<%- esc(ep.method) %>"><%- esc(ep.method) %></span>
+      <span class="endpoint-path"><%- esc(ep.path) %></span>
       <% if (ep.summary) { %>
-        <span class="endpoint-summary"><%= ep.summary %></span>
+        <span class="endpoint-summary"><%- esc(ep.summary) %></span>
       <% } %>
     </div>
 
-    <div class="endpoint-body<%= ep.deprecated ? ' deprecated' : '' %>">
+    <div class="endpoint-body<%- ep.deprecated ? ' deprecated' : '' %>">
       <% if (ep.deprecated) { %>
-        <p style="color:#b45309;font-size:9pt;font-weight:600;margin-bottom:8px;">⚠️ DEPRECATED</p>
+        <p style="color:#b45309;font-size:9pt;font-weight:600;margin-bottom:8px;">DEPRECATED</p>
       <% } %>
 
       <% if (ep.description) { %>
-        <div class="endpoint-description"><%= ep.description %></div>
+        <div class="endpoint-description"><%- esc(ep.description) %></div>
       <% } %>
 
       <!-- Path Parameters -->
@@ -36,10 +36,10 @@
           <tbody>
             <% for (const p of ep.parameters.path) { %>
               <tr>
-                <td><span class="param-name">{<%= p.name %>}</span></td>
-                <td><span class="param-type"><%= p.type %></span></td>
-                <td><%= p.required ? '<span class="param-required">required</span>' : 'optional' %></td>
-                <td><%= p.description %></td>
+                <td><span class="param-name">{<%- esc(p.name) %>}</span></td>
+                <td><span class="param-type"><%- esc(p.type) %></span></td>
+                <td><% if (p.required) { %><span class="param-required">required</span><% } else { %>optional<% } %></td>
+                <td><%- esc(p.description) %></td>
               </tr>
             <% } %>
           </tbody>
@@ -56,10 +56,10 @@
           <tbody>
             <% for (const p of ep.parameters.query) { %>
               <tr>
-                <td><span class="param-name"><%= p.name %></span></td>
-                <td><span class="param-type"><%= p.type %></span></td>
-                <td><%= p.required ? '<span class="param-required">required</span>' : 'optional' %></td>
-                <td><%= p.description %></td>
+                <td><span class="param-name"><%- esc(p.name) %></span></td>
+                <td><span class="param-type"><%- esc(p.type) %></span></td>
+                <td><% if (p.required) { %><span class="param-required">required</span><% } else { %>optional<% } %></td>
+                <td><%- esc(p.description) %></td>
               </tr>
             <% } %>
           </tbody>
@@ -76,10 +76,10 @@
           <tbody>
             <% for (const p of ep.parameters.header) { %>
               <tr>
-                <td><span class="param-name"><%= p.name %></span></td>
-                <td><span class="param-type"><%= p.type %></span></td>
-                <td><%= p.required ? '<span class="param-required">required</span>' : 'optional' %></td>
-                <td><%= p.description %></td>
+                <td><span class="param-name"><%- esc(p.name) %></span></td>
+                <td><span class="param-type"><%- esc(p.type) %></span></td>
+                <td><% if (p.required) { %><span class="param-required">required</span><% } else { %>optional<% } %></td>
+                <td><%- esc(p.description) %></td>
               </tr>
             <% } %>
           </tbody>
@@ -88,11 +88,11 @@
 
       <!-- Request Body -->
       <% if (ep.requestBody) { %>
-        <div class="section-label">Request Body<%= ep.requestBody.required ? ' <span class="param-required">(required)</span>' : '' %></div>
+        <div class="section-label">Request Body<% if (ep.requestBody.required) { %> <span class="param-required">(required)</span><% } %></div>
         <% if (ep.requestBody.description) { %>
-          <p style="font-size:9pt;color:#64748b;margin-bottom:6px;"><%= ep.requestBody.description %></p>
+          <p style="font-size:9pt;color:#64748b;margin-bottom:6px;"><%- esc(ep.requestBody.description) %></p>
         <% } %>
-        <p style="font-size:8.5pt;color:#94a3b8;margin-bottom:6px;">Content-Type: <%= ep.requestBody.contentType %> · Type: <span class="param-type"><%= ep.requestBody.type %></span></p>
+        <p style="font-size:8.5pt;color:#94a3b8;margin-bottom:6px;">Content-Type: <%- esc(ep.requestBody.contentType) %> - Type: <span class="param-type"><%- esc(ep.requestBody.type) %></span></p>
         <% if (ep.requestBody.properties.length > 0) { %>
           <%- include('param-table-rows', { properties: ep.requestBody.properties, depth: 0 }) %>
         <% } %>
@@ -102,8 +102,8 @@
       <div class="section-label">Responses</div>
       <% for (const resp of ep.responses) { %>
         <div style="margin-bottom: 10px;">
-          <span class="status-badge status-<%= resp.code.charAt(0) %>xx"><%= resp.code %></span>
-          <span style="font-size:9pt;color:#475569;margin-left:6px;"><%= resp.description %></span>
+          <span class="status-badge status-<%- esc(resp.statusGroup) %>"><%- esc(resp.code) %></span>
+          <span style="font-size:9pt;color:#475569;margin-left:6px;"><%- esc(resp.description) %></span>
           <% if (resp.properties.length > 0) { %>
             <%- include('param-table-rows', { properties: resp.properties, depth: 0 }) %>
           <% } %>

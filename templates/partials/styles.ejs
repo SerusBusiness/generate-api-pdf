@@ -9,6 +9,10 @@ body {
   background: #ffffff;
 }
 
+@page {
+  size: A4;
+}
+
 /* ── Cover Page ─────────────────────────────────────────── */
 .cover-page {
   page-break-after: always;
@@ -21,6 +25,7 @@ body {
   background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #1a365d 100%);
   color: #ffffff;
   padding: 40mm 30mm;
+  break-after: page;
 }
 
 .cover-logo {
@@ -63,10 +68,14 @@ body {
   display: flex;
   gap: 32px;
   margin-top: 24px;
+  max-width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .cover-meta-item {
   text-align: center;
+  max-width: 55mm;
 }
 
 .cover-meta-label {
@@ -81,6 +90,7 @@ body {
   font-size: 11pt;
   font-weight: 500;
   color: #e2e8f0;
+  overflow-wrap: anywhere;
 }
 
 .cover-divider {
@@ -121,6 +131,7 @@ body {
   color: #1e3a5f;
   font-weight: 500;
   font-size: 11pt;
+  overflow-wrap: anywhere;
 }
 
 .toc-item a:hover {
@@ -154,6 +165,7 @@ body {
 /* ── Tag Sections ───────────────────────────────────────── */
 .tag-section {
   page-break-before: always;
+  break-before: page;
   padding-top: 4mm;
 }
 
@@ -179,7 +191,7 @@ body {
 /* ── Endpoint Block ─────────────────────────────────────── */
 .endpoint {
   margin-bottom: 28px;
-  page-break-inside: avoid;
+  break-inside: auto;
 }
 
 .endpoint-header {
@@ -191,6 +203,7 @@ body {
   border: 1px solid #e2e8f0;
   border-bottom: none;
   background: #f8fafc;
+  break-after: avoid;
 }
 
 .method-badge {
@@ -216,6 +229,8 @@ body {
   font-size: 10pt;
   color: #1e293b;
   font-weight: 500;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .endpoint-summary {
@@ -224,6 +239,7 @@ body {
   margin-left: auto;
   text-align: right;
   max-width: 50%;
+  overflow-wrap: anywhere;
 }
 
 .endpoint-body {
@@ -249,8 +265,14 @@ body {
 .param-table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
   font-size: 9pt;
   margin: 8px 0 16px 0;
+  break-inside: auto;
+}
+
+.param-table thead {
+  display: table-header-group;
 }
 
 .param-table th {
@@ -264,10 +286,26 @@ body {
   letter-spacing: 0.5px;
 }
 
+.param-table th:nth-child(1),
+.param-table td:nth-child(1) {
+  width: 26%;
+}
+
+.param-table th:nth-child(2),
+.param-table td:nth-child(2) {
+  width: 20%;
+}
+
+.param-table th:nth-child(3),
+.param-table td:nth-child(3) {
+  width: 14%;
+}
+
 .param-table td {
   padding: 5px 10px;
   border-bottom: 1px solid #f1f5f9;
   vertical-align: top;
+  overflow-wrap: anywhere;
 }
 
 .param-table tr:nth-child(even) td {
@@ -279,6 +317,7 @@ body {
   font-size: 9pt;
   color: #1e3a5f;
   font-weight: 500;
+  overflow-wrap: anywhere;
 }
 
 .param-type {
@@ -288,6 +327,8 @@ body {
   background: #eef2ff;
   padding: 1px 5px;
   border-radius: 3px;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .param-required {
@@ -332,10 +373,12 @@ body {
 .status-3xx { background: #dbeafe; color: #1e40af; }
 .status-4xx { background: #fef9c3; color: #854d0e; }
 .status-5xx { background: #fee2e2; color: #991b1b; }
+.status-default { background: #e2e8f0; color: #334155; }
 
 /* ── Schema Reference Section ───────────────────────────── */
 .schema-section {
   page-break-before: always;
+  break-before: page;
 }
 
 .schema-section h2 {
@@ -348,7 +391,7 @@ body {
 
 .schema-block {
   margin-bottom: 20px;
-  page-break-inside: avoid;
+  break-inside: avoid-page;
 }
 
 .schema-name {
@@ -373,15 +416,13 @@ body {
     min-height: 100vh;
   }
 
-  .endpoint {
-    page-break-inside: avoid;
-  }
-
   .tag-section {
     page-break-before: always;
+    break-before: page;
   }
 
   .tag-section:first-of-type {
     page-break-before: avoid;
+    break-before: auto;
   }
 }

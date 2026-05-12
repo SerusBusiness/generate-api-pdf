@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title><%= specs[0]?.title || project %> — API Documentation</title>
+<title><%- esc(specs[0]?.title || project) %> - API Documentation</title>
 <style>
   <%- include('partials/styles') %>
 </style>

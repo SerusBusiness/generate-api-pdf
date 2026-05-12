@@ -1,21 +1,21 @@
 <!-- Single parameter row with optional nested children -->
-<tr class="<%= prop.depth > 0 ? 'param-nested' : '' %>">
+<tr class="<%- prop.depth > 0 ? 'param-nested' : '' %>">
   <td>
     <span class="param-name">
-      <% if (prop.depth > 0) { %><%= '  '.repeat(prop.depth) %>└ <% } %>
-      <%= prop.name %>
+      <% if (prop.depth > 0) { %><%- esc('  '.repeat(prop.depth)) %>&#9492; <% } %>
+      <%- esc(prop.name) %>
     </span>
   </td>
   <td>
-    <span class="param-type"><%= prop.type %></span>
-    <% if (prop.format) { %><span style="font-size:7.5pt;color:#94a3b8;">&lt;<%= prop.format %>&gt;</span><% } %>
-    <% if (prop.enum) { %><span style="font-size:7.5pt;color:#64748b;"> [<%= prop.enum.join(', ') %>]</span><% } %>
+    <span class="param-type"><%- esc(prop.type) %></span>
+    <% if (prop.format) { %><span style="font-size:7.5pt;color:#94a3b8;">&lt;<%- esc(prop.format) %>&gt;</span><% } %>
+    <% if (prop.enum) { %><span style="font-size:7.5pt;color:#64748b;"> [<%- esc(prop.enum.join(', ')) %>]</span><% } %>
   </td>
   <td>
     <% if (prop.required) { %><span class="param-required">required</span><% } %>
     <% if (prop.nullable) { %><span class="param-nullable">nullable</span><% } %>
   </td>
-  <td><%= prop.description %><% if (prop.default !== undefined) { %> <span style="font-size:8pt;color:#64748b;">(default: <code style="font-size:8pt;"><%= JSON.stringify(prop.default) %></code>)</span><% } %></td>
+  <td><%- esc(prop.description) %><% if (prop.default !== undefined) { %> <span style="font-size:8pt;color:#64748b;">(default: <code style="font-size:8pt;"><%- esc(JSON.stringify(prop.default)) %></code>)</span><% } %></td>
 </tr>
 
 <% if (prop.children && prop.children.length > 0) { %>

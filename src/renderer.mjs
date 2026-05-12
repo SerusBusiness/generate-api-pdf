@@ -16,6 +16,7 @@ const TEMPLATES_DIR = resolve(__dirname, '..', 'templates');
 export function renderHtml(data) {
   const templatePath = join(TEMPLATES_DIR, 'main.ejs');
   const html = ejs.render(readFileSync(templatePath, 'utf8'), {
+    ...helpers,
     ...data,
     filename: templatePath, // enables ejs includes
   });
@@ -30,12 +31,13 @@ export const helpers = {
    * Escape HTML special characters
    */
   esc(str) {
-    if (!str) return '';
+    if (str === null || str === undefined) return '';
     return String(str)
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;');
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
   },
 
   /**

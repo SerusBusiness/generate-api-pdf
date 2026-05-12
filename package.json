@@ -1,21 +1,59 @@
 {
   "name": "generate-api-pdf",
   "version": "1.0.0",
-  "description": "CLI tool to generate professional API documentation PDFs from OpenAPI JSON specs",
+  "description": "Generate professional, print-ready API documentation PDFs from OpenAPI JSON specs",
+  "keywords": [
+    "openapi",
+    "swagger",
+    "api",
+    "documentation",
+    "pdf",
+    "generator",
+    "cli",
+    "ejs",
+    "puppeteer"
+  ],
+  "author": "Kittisak M. <kittisak.m@lightuptotal.co.th>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lightuptotal/generate-api-pdf.git"
+  },
+  "homepage": "https://github.com/lightuptotal/generate-api-pdf#readme",
+  "bugs": {
+    "url": "https://github.com/lightuptotal/generate-api-pdf/issues"
+  },
   "type": "module",
+  "main": "src/parser.mjs",
+  "exports": {
+    ".": "./src/parser.mjs",
+    "./parser": "./src/parser.mjs",
+    "./renderer": "./src/renderer.mjs",
+    "./generator": "./src/generator.mjs"
+  },
   "bin": {
     "generate-api-pdf": "./bin/generate-api-pdf.mjs"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "templates/",
+    "README.md",
+    "LICENSE",
+    "CONTRIBUTING.md"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
   },
   "scripts": {
     "start": "node bin/generate-api-pdf.mjs",
     "dev": "node bin/generate-api-pdf.mjs --dev",
-    "test:gateway": "node bin/generate-api-pdf.mjs -i ../lts-platform/docs/api/output/gateway-openapi.json -c \"Light Up Total\" -p \"LTS Platform GatewayAPI\"",
-    "test:master-data": "node bin/generate-api-pdf.mjs -i ../lts-platform/docs/api/output/master-data-openapi.json -c \"Light Up Total\" -p \"LTS Platform MasterDataAPI\"",
-    "test:all": "npm run test:gateway && npm run test:master-data"
+    "prepublishOnly": "node -e \"console.log('Publishing generate-api-pdf v' + require('./package.json').version)\""
   },
   "dependencies": {
+    "commander": "^12.1.0",
     "ejs": "^3.1.10",
-    "puppeteer": "^23.11.1",
-    "commander": "^12.1.0"
+    "pdf-lib": "^1.17.1",
+    "puppeteer": "^23.11.1"
   }
 }

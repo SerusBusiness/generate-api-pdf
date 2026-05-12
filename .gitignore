@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+
+# Generated output
+*.pdf
+*.html
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Agent/tooling internals
+.agents/
+.codex/

@@ -5,11 +5,11 @@
   <% for (const spec of specs) { %>
     <% for (const schema of spec.schemas) { %>
     <div class="schema-block">
-      <div class="schema-name"><%= schema.name %></div>
+      <div class="schema-name"><%- esc(schema.name) %></div>
       <% if (schema.description) { %>
-        <div class="schema-description"><%= schema.description %></div>
+        <div class="schema-description"><%- esc(schema.description) %></div>
       <% } %>
-      <p style="font-size:8.5pt;color:#94a3b8;margin-bottom:4px;">Type: <span class="param-type"><%= schema.type %></span></p>
+      <p style="font-size:8.5pt;color:#94a3b8;margin-bottom:4px;">Type: <span class="param-type"><%- esc(schema.type) %></span></p>
       <% if (schema.properties.length > 0) { %>
         <%- include('param-table-rows', { properties: schema.properties, depth: 0 }) %>
       <% } %>
